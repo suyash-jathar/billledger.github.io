@@ -58,6 +58,133 @@
   </style>
 
   <script src="flutter_bootstrap.js" async></script>
+
+  <script>
+    // Remove the preloader once Flutter renders the first frame
+    window.addEventListener('flutter-first-frame', function () {
+      var preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 0.5s ease';
+        setTimeout(function () {
+          preloader.remove();
+        }, 500);
+      }
+    });
+
+    // Fallback: If Flutter fails to load or takes too long, 
+    // we can add a timeout to at least let them see if there's an error underneath
+    // setTimeout(function() {
+    //   var preloader = document.getElementById('preloader');
+    //   if (preloader) preloader.remove();
+    // }, 15000); 
+  </script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <base href="/"> -->
+
+  <!-- To host on Git hub -->
+  <base href="./">
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <!-- Mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <meta name="description"
+    content="Bill Ledger Web App - Manage invoices, expenses, and business accounting efficiently.">
+
+  <!-- iOS meta tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Bill Ledger">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <title>Bill Ledger</title>
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Preloader styles */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f3e5f5;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #e0e0e0;
+      border-top-color: #673ab7;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    .loader-text {
+      font-family: sans-serif;
+      color: #673ab7;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div>
+      <div class="loader"></div>
+      <div class="loader-text">Loading Bill Ledger...</div>
+    </div>
+  </div>
+
+  <!-- Flutter bootstrap -->
+  <script src="flutter_bootstrap.js" defer></script>
+
+  <script>
+    // Remove preloader when Flutter is ready
+    window.addEventListener('flutter-first-frame', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 0.5s ease';
+
+        setTimeout(() => preloader.remove(), 500);
+      }
+    });
+
+    // Fallback: remove loader after 15 seconds (in case of failure)
+    setTimeout(() => {
+      const preloader = document.getElementById('preloader');
+      if (preloader) preloader.remove();
+    }, 15000);
+  </script>
 </body>
 
 </html>
