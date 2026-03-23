@@ -38,6 +38,25 @@
 </head>
 
 <body>
+  <!-- Preloader for initial load -->
+  <div id="preloader"
+    style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background-color: #f3e5f5; z-index: 9999;">
+    <div style="text-align: center;">
+      <div
+        style="width: 50px; height: 50px; border: 5px solid #e0e0e0; border-top-color: #673ab7; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;">
+      </div>
+      <div style="font-family: sans-serif; color: #673ab7; font-weight: bold; font-size: 1.2rem;">Loading Bill Ledger...
+      </div>
+    </div>
+  </div>
+  <style>
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 
