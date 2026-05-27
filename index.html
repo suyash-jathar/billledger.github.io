@@ -10,6 +10,11 @@
   <meta name="description"
     content="Bill Ledger Web App - Manage invoices, expenses, and business accounting efficiently.">
 
+  <!-- Prevent browser from caching index.html itself -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <!-- Mobile responsiveness -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -33,6 +38,33 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc =
       "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.2.146/pdf.worker.min.js";
+  </script>
+
+  <script>
+    // Automatically detect when a new service worker is installed and reload
+    // the page so users always get the latest deployed version without needing
+    // a manual hard-refresh or cache clear.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(function (registration) {
+        registration.addEventListener('updatefound', function () {
+          var newWorker = registration.installing;
+          newWorker.addEventListener('statechange', function () {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // A new version is available — reload to activate it.
+              console.log('[BillLedger] New version detected — reloading...');
+              window.location.reload();
+            }
+          });
+        });
+      });
+
+      // Also check for updates every 60 seconds while the tab is open.
+      setInterval(function () {
+        navigator.serviceWorker.ready.then(function (reg) {
+          reg.update();
+        });
+      }, 60000);
+    }
   </script>
 </head>
 
