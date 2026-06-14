@@ -1,11 +1,11 @@
 {
-    "name": "bill_ledger_web_app",
-    "short_name": "bill_ledger_web_app",
+    "name": "Reliable Services",
+    "short_name": "Reliable Services",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Reliable Services | Precision Industrial Testing Equipment",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
